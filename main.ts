@@ -38,6 +38,7 @@ sprites.onOverlap(SpriteKind.Bullet, SpriteKind.Enemy, function (sprite, otherSp
     if (info.score() % 5 == 0) {
         scene.cameraShake(4, 500)
         level += 1
+        bunny.destroy()
         startLevel()
     }
 })
@@ -976,7 +977,7 @@ function startLevel () {
     game.splash("level up", "good luck!")
     light.showAnimation(light.sparkleAnimation, 3000)
     light.clear()
-    scene.setBackgroundColor(randint(3, 7))
+    scene.setBackgroundColor(level + 8)
     scene.setBackgroundImage(img`
         ................................................................................................................................................................
         ................................................................................................................................................................
@@ -1154,7 +1155,7 @@ function startLevel () {
     setupFrames()
 }
 function createTree () {
-    tree = sprites.createProjectileFromSide(trees[randint(0, trees.length - 1)], -50, 0)
+    tree = sprites.createProjectileFromSide(trees[level], -50, 0)
     tree.bottom = 100
     tree.z = -1
 }
@@ -1177,8 +1178,9 @@ let cloud: Sprite = null
 let gravity = 0
 let bunny: Sprite = null
 let projectile2: Sprite = null
-info.setLife(5)
 let level = 0
+info.setLife(5)
+level = 0
 startLevel()
 game.onUpdate(function () {
     if (bunny.bottom > 110) {
