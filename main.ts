@@ -1179,7 +1179,7 @@ let gravity = 0
 let bunny: Sprite = null
 let projectile2: Sprite = null
 let level = 0
-info.setLife(5)
+info.setLife(4)
 level = 0
 startLevel()
 game.onUpdate(function () {
